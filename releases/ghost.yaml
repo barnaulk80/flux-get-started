@@ -11,6 +11,7 @@ spec:
   releaseName: ghost
   chart:
     git: ssh://git@github.com/fluxcd/flux-get-started
+    git: ssh://git@github.com:barnaulk80/flux-get-started
     ref: master
     path: charts/ghost
   values:
