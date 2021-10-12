@@ -1,0 +1,56 @@
+Service:
+  ServiceGroupNAme: "meduzaa"
+  ServiceName: "gamefacilitator"
+  Environment: "fxb2"
+  replicaCount: 1
+  ContainerPort: 8000
+  initialDelaySeconds: 30
+  cpu: 100m
+  memory: 128Mi
+  PrivLBSubnets: subnet-0177661817cd0a650, subnet-0d4bce3854adfb3d8  
+  PubLBSubnets: subnet-28e7a74d, subnet-d1b4bafc
+  certificatearn: arn:aws:acm:us-east-1:362940677070:certificate/38c52b38-a758-4da9-b825-8194e1a74510
+  ServiceDnsNamePub: gamefacilitator.meduza-pub.qa-env.com
+  ServiceDnsNamePriv: gamefacilitator.meduza-priv.qa-env.com
+  env:
+  - name: SYSTEM_ENVIRONMENT
+    value: "qa"
+  - name: DJANGO_DEBUG
+    value: "True"
+  - name: DOCKER_CMD
+    value: "uvicorn game_facilitator_app:app --host 0.0.0.0 --port 8000 --log-level critical"
+  - name: VAULT_API
+    value: "https://vault.itco.me:8200/v1"
+  - name: VAULT_ENV_PATHS
+    value: "/secrets/data/dev/websites/esa/tt-game-engine.stormgain.com/env"
+  - name: VAULT_USER
+    value: "vault.esadeploy"
+  - name: VAULT_PASSWORD
+    value: "5:8d4d9`U/A8G6wH"
+  - name: ALLOWED_HOSTS
+    value: "*"
+  - name: LOGGER_IDENTITY
+    value: "game_facilitator"
+  - name: DJANGO_LOGTO
+    value: "/var/logs/game_facilitator-errors.json"
+  - name: DJANGO_INTEGRATION_LOGTO
+    value: "/var/logs/game_facilitator-integration.json"
+  - name: CORS_ORIGIN_ALLOW_ALL
+    value: "True"
+  - name: GAME_ENGINE_URL
+    value: ""   # was '' single quotes
+  - name: GAME_DEALER_URL
+    value: ""   # was ''
+  - name: GAME_TIMEOUT
+    value: "10"
+  - name: KAFKA_BOOTSTRAP_SERVER
+    value: "0.dual.kafka.qa-fxenv.com:9092"
+  - name: KAFKA_VERSION
+    value: "(0, 10, 1)"
+  - name: KAFKA_OUT_TOPIC
+    value: "esa-game-facilitator--out-qa"
+
+image:
+  repository: "362940677070.dkr.ecr.eu-west-1.amazonaws.com/esa/tt-game-engine"
+  tag: "1.0.5"
+

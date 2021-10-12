@@ -1,0 +1,15 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: tick-trading
+  namespace: demo
+  annotations:
+    fluxcd.io/automated: "false"
+    fluxcd.io/tag.chart-image: glob:3.1.1-debian-9-*
+spec:
+  releaseName: tick-trading
+  chart:
+    git: ssh://git@github.com:barnaulk80/flux-get-started
+    ref: master
+    path: charts/tick-trading
