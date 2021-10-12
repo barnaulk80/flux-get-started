@@ -10,6 +10,6 @@ metadata:
 spec:
   releaseName: tick-trading
   chart:
-    git: ssh://git@github.com:barnaulk80/flux-get-started
+    git: ssh://git@github.com:barnaulk80/flux-get-started.git
     ref: master
     path: charts/tick-trading
