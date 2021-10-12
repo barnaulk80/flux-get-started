@@ -13,3 +13,5 @@ spec:
     git: ssh://git@github.com/barnaulk80/flux-get-started.git
     ref: master
     path: charts/tick-trading
+  values:
+    cpu: 101m
